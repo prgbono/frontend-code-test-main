@@ -1,4 +1,4 @@
-import { gql, useQuery } from "urql";
+import { gql, useQuery } from 'urql'
 
 const query = gql`
   query Home {
@@ -11,12 +11,12 @@ const query = gql`
       }
     }
   }
-`;
+`
 
 const HomePage = () => {
-  const [data] = useQuery({ query });
+  const [data] = useQuery({ query })
 
-  return <div>Home</div>;
-};
+  return <div>Home</div>
+}
 
-export default HomePage;
+export default HomePage

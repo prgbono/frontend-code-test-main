@@ -1,5 +1,5 @@
 const PersonPage = () => {
-  return <div>Person</div>;
-};
+  return <div>Person</div>
+}
 
-export default PersonPage;
+export default PersonPage
