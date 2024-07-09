@@ -5,7 +5,7 @@ import { createClient } from 'urql'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import PersonPage from './people/pages/PersonPage'
 import HomePage from './people/pages/HomePage'
-import PersonPage from './pages/PersonPage'
+import NotFoundPage from './people/pages/NotFoundPage'
 import './styles.css'
 
 const client = createClient({
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/person/:personId',
     element: <PersonPage />
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />
   }
 ])
 
