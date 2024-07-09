@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'urql'
 import { createClient } from 'urql'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import PersonPage from './people/pages/PersonPage'
+import HomePage from './people/pages/HomePage'
 import PersonPage from './pages/PersonPage'
 import HomePage from './pages/HomePage'
 
