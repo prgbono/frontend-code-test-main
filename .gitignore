@@ -28,3 +28,6 @@ src/generated
 
 # TODO file
 TODO.md
+
+#mock data
+src/people/mock
