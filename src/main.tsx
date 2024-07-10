@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'urql'
-import { createClient } from 'urql'
+import { Client, cacheExchange, fetchExchange, Provider } from 'urql'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import PersonPage from './people/pages/PersonPage'
 import HomePage from './people/pages/HomePage'
 import NotFoundPage from './people/pages/NotFoundPage'
 import './styles.css'
 
-const client = createClient({
+const client = new Client({
   url: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
-  exchanges: []
+  // TODO:  What are cacheExchange and fetchExchange for?
+  exchanges: [cacheExchange, fetchExchange]
 })
 
 const router = createBrowserRouter([
