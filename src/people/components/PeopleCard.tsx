@@ -1,5 +1,6 @@
-const PeopleCard = ({ person }: any) => {
-  // FIXME: Add proper type (person)
+import { Person } from '../types'
+
+const PeopleCard = (person: Person) => {
   console.log(' PEopleCard person: ', person)
   return (
     <div
