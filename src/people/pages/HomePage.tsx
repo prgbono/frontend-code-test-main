@@ -1,4 +1,5 @@
 import { gql, useQuery } from 'urql'
+import PeopleList from '../components/PeopleList'
 
 const query = gql`
   query Home {
@@ -16,7 +17,7 @@ const query = gql`
 const HomePage = () => {
   const [data] = useQuery({ query })
 
-  return <div>Home</div>
+  return <PeopleList />
 }
 
 export default HomePage
