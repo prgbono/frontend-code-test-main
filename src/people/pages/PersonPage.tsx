@@ -1,21 +1,49 @@
-import Footer from '../../ui/Footer'
-const PersonPage = () => {
-  return (
-    <div className="flex flex-col items-center min-h-screen p-4">
-      <h1 className="mb-12 text-2xl font-bold">Person 1 Name</h1>
-      <p className="mb-12">
-        This is PersonPAge List of producers he has worked with and how many
-        times
-      </p>
-      <p className="mb-4">Species Average Height</p>
-      <h2 className="mb-2 text-xl">Films</h2>
-      <div className="flex flex-col items-center w-1/3 p-4 mb-4 border">
-        <h3 className="text-lg font-bold">Title</h3>
-        <p className="mb-10">Release Date</p>
-        <p>Number of planets without water</p>
-      </div>
+import { useParams } from 'react-router-dom'
+import { getPersonById } from '../helpers/getPersonById'
+import { useEffect, useState } from 'react'
+import PersonDetails from './PersonDetails'
 
-      <Footer />
+interface Person {
+  id: string
+  name: string
+}
+
+const PersonPage = () => {
+  const { personId } = useParams()
+  const [person, setPerson] = useState<Person | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchPerson = async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        const personData = await getPersonById(personId as string)
+        setPerson(personData)
+      } catch (err) {
+        typeof err === 'string'
+          ? setError(err)
+          : setError('An unexpected error occurred')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchPerson()
+  }, [personId])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error}</p>
+
+  return (
+    <div>
+      {person ? (
+        <PersonDetails person={person} />
+      ) : (
+        // TODO: Not person found
+        <p>No person found</p>
+      )}
     </div>
   )
 }
