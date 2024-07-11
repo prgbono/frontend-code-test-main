@@ -6,12 +6,13 @@ const Footer = () => {
     navigate(-1)
   }
   return (
-    <footer className="flex justify-between w-1/3">
-      <button className="p-2 border">Prev</button>
-      <button className="p-2 border" onClick={onNavigateBack}>
+    <footer className="w-1/3 mt-4">
+      <button
+        className="w-full p-2 px-4 py-2 font-bold border"
+        onClick={onNavigateBack}
+      >
         Home
       </button>
-      <button className="p-2 border">Next</button>
     </footer>
   )
 }

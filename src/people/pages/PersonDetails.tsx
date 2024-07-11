@@ -16,6 +16,10 @@ const PersonDetails = ({ person }: any) => {
         <p className="mb-10">Release Date</p>
         <p>Number of planets without water</p>
       </div>
+      <div className="flex justify-between w-1/3">
+        <button className="p-2 border">Prev</button>
+        <button className="p-2 border">Next</button>
+      </div>
       <Footer />
     </div>
   )
