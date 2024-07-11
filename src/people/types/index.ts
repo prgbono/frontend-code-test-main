@@ -1,1 +1,4 @@
-// export * from './TOBE_REMOVED_person'
+export interface Person {
+  id: string
+  name: string
+}
