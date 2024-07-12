@@ -38,14 +38,14 @@ const PersonPage = () => {
 
   return (
     <div>
-      {person ? (
-        <PersonDetails person={person} />
-      ) : (
-        // TODO: Not person found
-        <p>No person found</p>
-      )}
+      {person ? <PersonDetails person={person} /> : <p>No person found</p>}
     </div>
   )
 }
 
 export default PersonPage
+
+/* TODO: Tests
+DEbe renderizarse
+
+*/
