@@ -30,9 +30,12 @@ const getDryPlanets = (
 const FilmCardContainer = ({ films }: any) => {
   const filmDataArray = getFilmDetails(films)
   const filmIds = filmDataArray.map((film) => film.id)
-  const [filmData, setFilmData] = useState<Planet | null>(null)
+  const [filmData, setFilmData] = useState<Planet[] | null>(null)
+  // TODO: Use or remove!!
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
+
+  const [filmIndex, setFilmIndex] = useState<number>(0)
 
   useEffect(() => {
     const fetchPlanets = async () => {
@@ -69,21 +72,46 @@ const FilmCardContainer = ({ films }: any) => {
     fetchPlanets()
   }, [films])
 
-  // TODO: Remove comments
-  console.log('filmData: ', filmData)
+  // const onPrevButton = (index: number) => {
+  //   setFilmIndex(index - 1)
+  // }
+
+  // const onNextButton = (index: number)) => {
+  //   setFilmIndex(index + 1)
+  // }
 
   return (
     <>
       {filmData && (
         <FilmCard
-          title={filmData[5].title}
-          releaseDate={filmData[5].releaseDate}
-          dryPlanetsInTheFilm={filmData[5].dryPlanetsInTheFilm}
+          title={filmData[filmIndex].title}
+          releaseDate={filmData[filmIndex].releaseDate}
+          dryPlanetsInTheFilm={filmData[filmIndex].dryPlanetsInTheFilm}
         />
       )}
       <div className="flex justify-between w-1/3">
-        <button className="p-2 border">Prev</button>
-        <button className="p-2 border">Next</button>
+        <button
+          className={`${
+            filmIndex === 0
+              ? 'bg-black-500 cursor-not-allowed opacity-60 p-2 border'
+              : 'p-2 border'
+          }`}
+          onClick={() => setFilmIndex(filmIndex - 1)}
+          disabled={filmIndex === 0}
+        >
+          Prev
+        </button>
+        <button
+          className={`${
+            filmIndex === filmData?.length - 1
+              ? 'bg-black-500 cursor-not-allowed opacity-60 p-2 border'
+              : 'p-2 border'
+          }`}
+          onClick={() => setFilmIndex(filmIndex + 1)}
+          disabled={filmIndex === filmData?.length - 1}
+        >
+          Next
+        </button>
       </div>
     </>
   )
