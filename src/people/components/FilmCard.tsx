@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Planet } from '../types'
 import { getPlanetsByFilmId } from '../helpers/getPlanetsByFilmId'
 
-const getMovieDetails = (
+const getFilmDetails = (
   films: {
     id: string
     releaseDate: string
@@ -27,10 +27,9 @@ const getDryPlanets = (
 }
 
 const FilmCard = ({ films }: any) => {
-  const filmData = getMovieDetails(films)
-  const filmIds = filmData.map((film) => film.id)
-
-  const [dryPlanets, setDryPlanets] = useState<Planet | null>(null)
+  const filmDataArray = getFilmDetails(films)
+  const filmIds = filmDataArray.map((film) => film.id)
+  const [filmData, setFilmData] = useState<Planet | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -50,13 +49,17 @@ const FilmCard = ({ films }: any) => {
           }
           return []
         })
-        setDryPlanets(getDryPlanetsPerFilm)
-        const filmDataWithDryPlanets = filmData.map((film, index) => ({
+
+        console.log('filmDataArray: ', filmDataArray)
+        console.log('getDryPlanetsPerFilm: ', getDryPlanetsPerFilm)
+
+        const filmDataWithDryPlanets = filmDataArray.map((film, index) => ({
           ...film,
-          dryPlanetsInTheFilm: dryPlanets[index]
+          dryPlanetsInTheFilm: getDryPlanetsPerFilm[index]
         }))
+
         console.log('filmDataWithDryPlanets: ', filmDataWithDryPlanets)
-        setDryPlanets(filmDataWithDryPlanets)
+        setFilmData(filmDataWithDryPlanets)
       } catch (err) {
         typeof err === 'string'
           ? setError(err)
@@ -70,8 +73,7 @@ const FilmCard = ({ films }: any) => {
   }, [films])
 
   // TODO: Remove comments
-  // console.log('filmData: ', filmData)
-  // console.log('dryPlanets: ', dryPlanets)
+  console.log('filmData: ', filmData)
 
   return (
     <>
