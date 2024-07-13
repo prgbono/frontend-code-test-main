@@ -1,11 +1,15 @@
 import Footer from '../../ui/Footer'
 import ProducerList from '../components/ProducerList'
+import FilmCard from '../components/FilmCard'
 
 const PersonDetails = ({ person }: any) => {
+  // TODO: Remove comments
+  // console.log('PersonDetails: ', person)
   const { name, birthYear, species, filmConnection } = person
   const producersList = filmConnection
     ? filmConnection.films.flatMap((film: any) => film.producers)
     : []
+  const films = filmConnection ? filmConnection.films : []
 
   return (
     <div className="flex flex-col items-center min-h-screen p-4">
@@ -23,18 +27,15 @@ const PersonDetails = ({ person }: any) => {
         <p className="mb-4">Species Average Height: {species.averageHeight}</p>
       ) : null}
       <h2 className="mb-2 text-xl">Films</h2>
-      <div className="flex flex-col items-center w-1/3 p-4 mb-4 border">
-        <h3 className="text-lg font-bold">Title</h3>
-        <p className="mb-10">Release Date</p>
-        <p>Number of planets without water</p>
-      </div>
-      <div className="flex justify-between w-1/3">
-        <button className="p-2 border">Prev</button>
-        <button className="p-2 border">Next</button>
-      </div>
+      <FilmCard films={films} />
       <Footer />
     </div>
   )
 }
 
 export default PersonDetails
+
+/* TODO: Tests
+DEbe renderizarse
+Debe hacer lo que sea al hacer click en los botones Prev y Next
+*/
