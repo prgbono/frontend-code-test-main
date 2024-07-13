@@ -1,6 +1,6 @@
 import Footer from '../../ui/Footer'
 import ProducerList from '../components/ProducerList'
-import FilmCard from '../components/FilmCard'
+import FilmCardContainer from '../components/FilmCardContainer'
 
 const PersonDetails = ({ person }: any) => {
   // TODO: Remove comments
@@ -27,7 +27,7 @@ const PersonDetails = ({ person }: any) => {
         <p className="mb-4">Species Average Height: {species.averageHeight}</p>
       ) : null}
       <h2 className="mb-2 text-xl">Films</h2>
-      <FilmCard films={films} />
+      <FilmCardContainer films={films} />
       <Footer />
     </div>
   )
