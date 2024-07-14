@@ -2,8 +2,6 @@ import PeopleCard from '../components/PeopleCard'
 import { useEffect, useState } from 'react'
 import { getPeople } from '../helpers/getPeople'
 
-// TODO: Extract the fetch to getPeople function in helpers
-
 const HomePage = () => {
   const [people, setPeople] = useState<any | null>(null)
   const [loading, setLoading] = useState<boolean>(true)

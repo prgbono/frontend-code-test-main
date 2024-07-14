@@ -16,7 +16,6 @@ export const getPlanetsByFilmId = async (
       throw new Error(result.error.message)
     }
 
-    // FIXME:
     return result.data?.film.planetConnection.planets || null
   } catch (error) {
     throw error

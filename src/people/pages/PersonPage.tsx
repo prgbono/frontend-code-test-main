@@ -44,8 +44,3 @@ const PersonPage = () => {
 }
 
 export default PersonPage
-
-/* TODO: Tests
-DEbe renderizarse
-
-*/

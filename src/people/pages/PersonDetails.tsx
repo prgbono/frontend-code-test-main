@@ -3,8 +3,6 @@ import ProducerList from '../components/ProducerList'
 import FilmCardContainer from '../components/FilmCardContainer'
 
 const PersonDetails = ({ person }: any) => {
-  // TODO: Remove comments
-  console.log('PersonDetails: ', person)
   const { name, birthYear, species, filmConnection } = person
   const producersList = filmConnection
     ? filmConnection.films.flatMap((film: any) => film.producers)
@@ -30,7 +28,7 @@ const PersonDetails = ({ person }: any) => {
         <strong>Birth year:</strong>
         {birthYear}
       </p>
-      {species ? (
+      {species && species.averageHeight ? (
         <p className="mb-4">
           <strong>Species Average Height:</strong>
           {species.averageHeight}
@@ -49,8 +47,3 @@ const PersonDetails = ({ person }: any) => {
 }
 
 export default PersonDetails
-
-/* TODO: Tests
-DEbe renderizarse
-Debe hacer lo que sea al hacer click en los botones Prev y Next
-*/

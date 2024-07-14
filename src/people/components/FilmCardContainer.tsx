@@ -31,7 +31,6 @@ const FilmCardContainer = ({ films }: any) => {
   const filmDataArray = getFilmDetails(films)
   const filmIds = filmDataArray.map((film) => film.id)
   const [filmData, setFilmData] = useState<Planet[] | null>(null)
-  // TODO: Use or remove!!
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -71,14 +70,6 @@ const FilmCardContainer = ({ films }: any) => {
 
     fetchPlanets()
   }, [films])
-
-  // const onPrevButton = (index: number) => {
-  //   setFilmIndex(index - 1)
-  // }
-
-  // const onNextButton = (index: number)) => {
-  //   setFilmIndex(index + 1)
-  // }
 
   return (
     <>
