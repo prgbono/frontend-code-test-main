@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Planet } from '../types'
 import { getPlanetsByFilmId } from '../helpers/getPlanetsByFilmId'
 import FilmCard from './FilmCard'
 
+type FilmCardField = {
+  id: string
+  title: string
+  releaseDate: string
+  dryPlanetsInTheFilm: string[]
+}
 const getFilmDetails = (
   films: {
     id: string
@@ -30,7 +35,7 @@ const getDryPlanets = (
 const FilmCardContainer = ({ films }: any) => {
   const filmDataArray = getFilmDetails(films)
   const filmIds = filmDataArray.map((film) => film.id)
-  const [filmData, setFilmData] = useState<Planet[] | null>(null)
+  const [filmData, setFilmData] = useState<FilmCardField[] | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -48,7 +53,13 @@ const FilmCardContainer = ({ films }: any) => {
 
         const getDryPlanetsPerFilm = planetDataArray.map((planetsFilm) => {
           if (planetsFilm) {
-            return getDryPlanets(planetsFilm)
+            return getDryPlanets(
+              planetsFilm as {
+                surfaceWater: number
+                name: string
+                __typename: string
+              }[]
+            )
           }
           return []
         })
@@ -94,12 +105,17 @@ const FilmCardContainer = ({ films }: any) => {
         </button>
         <button
           className={`${
-            filmIndex === filmData?.length - 1
+            filmIndex === filmData?.length &&
+            (filmData.length - 1
               ? 'bg-black-500 cursor-not-allowed opacity-60 p-2 border'
-              : 'p-2 border'
+              : 'p-2 border')
           }`}
           onClick={() => setFilmIndex(filmIndex + 1)}
-          disabled={filmIndex === filmData?.length - 1}
+          disabled={
+            filmData !== null &&
+            filmData !== undefined &&
+            filmIndex === filmData.length - 1
+          }
         >
           Next
         </button>

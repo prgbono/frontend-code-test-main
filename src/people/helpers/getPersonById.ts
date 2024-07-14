@@ -1,7 +1,7 @@
 import { createRequest } from '@urql/core'
 import { urqlClient } from './urqlClient'
 import { GET_PERSON_BY_ID_QUERY } from '../queries'
-import { Person } from '../types'
+import { Person } from '../../generated/graphql'
 
 export const getPersonById = async (id: string): Promise<Person | null> => {
   const request = createRequest(GET_PERSON_BY_ID_QUERY, { id })

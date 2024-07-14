@@ -2,11 +2,7 @@ import { useParams } from 'react-router-dom'
 import { getPersonById } from '../helpers/getPersonById'
 import { useEffect, useState } from 'react'
 import PersonDetails from './PersonDetails'
-
-interface Person {
-  id: string
-  name: string
-}
+import { Person } from '../../generated/graphql'
 
 const PersonPage = () => {
   const { personId } = useParams()
