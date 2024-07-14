@@ -105,10 +105,9 @@ const FilmCardContainer = ({ films }: any) => {
         </button>
         <button
           className={`${
-            filmIndex === filmData?.length &&
-            (filmData.length - 1
+            filmData !== null && filmIndex && filmIndex === filmData.length - 1
               ? 'bg-black-500 cursor-not-allowed opacity-60 p-2 border'
-              : 'p-2 border')
+              : 'p-2 border'
           }`}
           onClick={() => setFilmIndex(filmIndex + 1)}
           disabled={
